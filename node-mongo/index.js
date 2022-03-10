@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-
-const MONGO_URI = 'mongodb+srv://belemzzuka:qwerty123@cluster0.viuop.mongodb.net/chat?retryWrites=true&w=majority'
+require('dotenv').config();
 
 async function main(){
-    await mongoose.connect(MONGO_URI)
+    await mongoose.connect(process.env.MONGO_URI)
 }
 
 function createMessage() {
