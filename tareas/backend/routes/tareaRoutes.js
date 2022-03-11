@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router(); // metodo de express para mandar a llamar las rutas
-const { getTareas, postTareas, putTareas, deleteTareas } = require('../controllers/tareaControllers') //importar el controlador
+const { getTareas, postTareas, putTareas, deleteTareas } = require('../controllers/tareaControllers') //IMPORTAR EL FUNCIONAMIENTO DE LAS RUTAS DEL CONTROLADOR
 
 // METHOD #3
-router.route('/').get(getTareas).post(postTareas);
+router.route('/').get(getTareas).post(postTareas); 
 
 router.route('/:id').put(putTareas).delete(deleteTareas);
 
@@ -38,4 +38,4 @@ router.delete('/:id', (req, res) => {
 })
 */
 
-module.exports = router
+module.exports = router //EXPORTA LAS RUTAS
