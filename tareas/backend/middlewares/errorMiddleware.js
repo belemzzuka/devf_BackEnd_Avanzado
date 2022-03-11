@@ -1,7 +1,7 @@
 const errorHandler = (err, req, res, next) => {
     const statusCode = res.statusCode ? res.statusCode : 500 //si hay status code que lo regrese y sino que sea error 500
 
-    res.statusCode(statusCode)
+    res.status(statusCode) //devolver el codigo de statusCode
 
     res.json({
         message: err.message,
