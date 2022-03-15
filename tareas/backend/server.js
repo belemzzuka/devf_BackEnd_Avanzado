@@ -13,7 +13,9 @@ const app = express(); // crear la app
 app.use(express.json()) // middleware para que la aplicacion tenga acceso a los metodos de json express
 app.use(express.urlencoded({ extended: false })) //podamos usar el urlencoded para leer el body
 
-app.use('/api/tareas', require('./routes/tareaRoutes')) // MIDDLEWARE PARA CONECTAR CON LAS RUTAS
+// MIDDLEWARES PARA CONECTAR CON LAS RUTAS
+app.use('/api/tareas', require('./routes/tareaRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
 
 app.use(errorHandler) // consumir el error handler, despues de laruta
 

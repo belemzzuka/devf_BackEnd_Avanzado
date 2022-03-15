@@ -3,6 +3,11 @@
 const mongoose = require('mongoose'); //inicializar mongoose
 
 const tareaSchema = mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId, //el tipo va a ser un Object Id de un esquema que ya existe en Mongoose
+        required: true,
+        ref: 'users' //referencia a el esquema que se está exportando
+    },
     text: {
         type: String,
         required: [true, 'Es mandatorio escribir un texto']
