@@ -76,7 +76,6 @@ const profileUser = asyncHandler(async(req, res) => {
     //Verificación de usuario existente
     const user = await users.findOne({ email })
 
-    console.log(user)
     //Si existe el usuario, mostramos datos del perfil
     if(user){
         res.status(200).json({
