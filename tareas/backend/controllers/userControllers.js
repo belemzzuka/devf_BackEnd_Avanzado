@@ -71,25 +71,14 @@ const loginUser = asyncHandler(async(req, res) => {
 
 const profileUser = asyncHandler(async(req, res) => {
 
-/*
-    //Destructuración del body
-    const { email } = req.body
+    //Destructuracion de req.user que viene del authMiddelware en protect. Trae toda la info de usuario menos password
+    const { id, name, email } = req.user
 
-    //Verificación de usuario existente
-    const user = await users.findOne({ email })
-
-    //Si existe el usuario, mostramos datos del perfil
-    if(user){
-        res.status(200).json({
-            name: user.name,
-            email: user.email,
-            createdAt: user.createdAt
-        })
-    } else {
-        res.status(400)
-        throw new Error('El usuario que quieres ver el perfil no existe')
-    }
-*/
+    res.status(200).json({
+        id,
+        name,
+        email
+    })
 })
 
 const generateToken = (id) => {
@@ -101,5 +90,6 @@ const generateToken = (id) => {
 module.exports = {
     registerUser,
     loginUser,
-    profileUser
+    profileUser,
+    generateToken,
 }

@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router(); // metodo de express para mandar a llamar las rutas
 const { getTareas, postTareas, putTareas, deleteTareas } = require('../controllers/tareaControllers') //IMPORTAR EL FUNCIONAMIENTO DE LAS RUTAS DEL CONTROLADOR
+const { protect } = require('../middlewares/authMiddleware')
 
 // METHOD #3
-router.route('/').get(getTareas).post(postTareas); 
+router.route('/').get(protect, getTareas).post(protect, postTareas); 
 
-router.route('/:id').put(putTareas).delete(deleteTareas);
+router.route('/:id').put(protect, putTareas).delete(protect, deleteTareas);
 
 
 /* METHOD #2
