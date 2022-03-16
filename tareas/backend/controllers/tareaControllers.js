@@ -24,10 +24,16 @@ const postTareas = asyncHandler (async(req, res) => {
 
 const putTareas = asyncHandler (async(req, res) => {
     const tarea = await Tarea.findById(req.params.id)
-    if(!tarea){
+    if(!tarea){ //Verificacion si existe la tarea
         res.status(400)
         throw new Error('TAREA NO ENCONTRADA')
     }
+
+    if(tarea.user.toString() !== req.user.id){ //Verificacion si el user de la tarea encontrada es diferente al user del protect
+        res.status(401)
+        throw new Error('Acceso No Autorizado')
+    }
+
     const tareaUpdated = await Tarea.findByIdAndUpdate(req.params.id,req.body, { //primer parametro cual registro vamos a modificar (id) y el segundo es que vamos a modificar (body)
         new: true, // si es true, manda en la respuesta el objeto despues de ser actualizado. Si es false, manda en la respuesta como estaba antes de ser actualizado
         upsert: true // si no existe, lo crea
@@ -41,6 +47,12 @@ const deleteTareas = asyncHandler (async(req, res) => {
         res.status(400)
         throw new Error('TAREA NO ENCONTRADA')
     }
+
+    if(tarea.user.toString() !== req.user.id){
+        res.status(401)
+        throw new Error('Acceso No Autorizado')
+    }
+
     await tarea.remove()
     res.status(200).json({ id: req.params.id })
 })
