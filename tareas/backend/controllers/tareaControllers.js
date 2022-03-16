@@ -5,7 +5,7 @@ const Tarea = require('../models/tareaModel')
 
 // Como vamos a trabajar con mongoose y devuelve promesas, los request deben ir con async y await
 const getTareas = asyncHandler (async(req, res) => {
-    const tareas = await Tarea.find() //devolver todas las tareas
+    const tareas = await Tarea.find({ user: req.user.id }) //devolver todas las tareas buscando a el user ID
     res.status(200).json(tareas)
 })
 
@@ -16,7 +16,8 @@ const postTareas = asyncHandler (async(req, res) => {
         throw new Error('Es obligatorio agregar una tarea')
     }
     const tarea = await Tarea.create({
-        text: req.body.text
+        text: req.body.text,
+        user: req.user.id
     })
     res.status(200).json(tarea)
 })
