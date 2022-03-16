@@ -59,7 +59,8 @@ const loginUser = asyncHandler(async(req, res) => {
         res.status(200).json({
             id: user.id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            token: generateToken(user.id)
         })
     } else {
         res.status(400)
@@ -69,7 +70,8 @@ const loginUser = asyncHandler(async(req, res) => {
 })
 
 const profileUser = asyncHandler(async(req, res) => {
-    
+
+/*
     //Destructuración del body
     const { email } = req.body
 
@@ -87,7 +89,14 @@ const profileUser = asyncHandler(async(req, res) => {
         res.status(400)
         throw new Error('El usuario que quieres ver el perfil no existe')
     }
+*/
 })
+
+const generateToken = (id) => {
+    return jwt.sign({ id },process.env.JWT_SECRET, { // jwt.sign parametros: payload, secret y tiempo de expiración
+        expiresIn: '30d',
+    })
+}
 
 module.exports = {
     registerUser,
