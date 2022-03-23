@@ -10,8 +10,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 3rem 1rem 4rem 1rem;
 }
 
 .task-input {
@@ -58,5 +57,23 @@
   background: white;
   font-size:1rem;
   border-radius: 5px;
-  margin-bottom:1rem;
+  margin-bottom:0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.task__delete:hover {
+  color: red;
+}
+
+.task__delete {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  border-radius: 40%;
 }
