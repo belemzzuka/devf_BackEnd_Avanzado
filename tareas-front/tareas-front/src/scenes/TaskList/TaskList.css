@@ -1,0 +1,23 @@
+.task-list {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.task-input__container {
+    margin-bottom: 3rem;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .task-input__btn {
+    background-color: #0984e3 !important;
+  }
+  
+  .task-input__btn:hover {
+    background-color: #74b9ff !important;
+  }
+  
+  .task-input__btn:active {
+    background-color: #00b894 !important;
+  }
