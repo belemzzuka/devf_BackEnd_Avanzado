@@ -11,6 +11,18 @@ export const loginRequest = (email, password) => {
     })
 }
 
+export const signUpRequest = ({ name, email, password }) => {
+    return axios.post('http://localhost:5000/api/users', {
+        name: name,
+        email: email,
+        password: password
+    }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
 export const fetchTasks = (token) => {
     return axios.get('http://localhost:5000/api/tareas', { 
         headers: {
