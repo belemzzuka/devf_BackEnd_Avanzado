@@ -4,19 +4,25 @@ import Button from '../../components/Button';
 import TextInput from '../../components/TextInput';
 import Task from '../../components/Task';
 import './TaskList.css';
+import { useNavigate } from 'react-router-dom'
 
-function TaskList({user}) {
+function TaskList({userName, token}) { //TODO: Recibir el token como props
 const [taskText, setTaskText] = useState("");
 const [tasks, setTasks] = useState([]);
 const [loader,setLoader] = useState(false); //agregar la palabra loading
+const  navigate = useNavigate(); //Hook que te da acceso a la funcionalidad interna de React-Router
 
-//console.log(tasks)
+useEffect(() => {
+  if (!token){
+    navigate("/auth"); //cuando no exista el token, va a redirigir al inicio de sesión
+  }
+}, [token])
 
 useEffect(() => {
     setLoader(true); //inicia como true para que veas que algo está cargando
     const timeoutId = setTimeout(() => {
       console.log("Este proceso pasa despues de 5 segundos")
-      fetchTasks()
+      fetchTasks(token) // TODO: Mandar token
       .then((res) => {
         setTasks(res.data)
         setLoader(false) //lo apagas cuando ya desplegó el contenido
@@ -44,7 +50,7 @@ useEffect(() => {
     //a. Si el fetch es exitoso, agrego id.
     //b. Elimino el elemento.
   const addTask = () => {
-    createTasks(taskText)
+    createTasks(taskText, token) // TODO: Mandar token
     .then((res) => {
       const createdTask = res.data;
       setTasks(tasks.concat(createdTask))
@@ -61,7 +67,7 @@ useEffect(() => {
 
   // ## ELIMINAR TAREAS
   const deleteTask = (id) => {
-    deleteTasks(id)
+    deleteTasks(id, token)
     .then((res) => {
       const updatedTasks = tasks.filter( task => task._id !== id )
       setTasks(updatedTasks)
@@ -74,7 +80,7 @@ useEffect(() => {
 
     return(
     <div className='task-list'>
-      <h2 style={{color:'white'}}>Bienvenide {user}</h2>
+      <h2 style={{color:'white'}}>Bienvenidx {userName}</h2>
         <div className="task-input__container">
             <TextInput type="text" value={taskText} placeholder="Ingresa una tarea" onChange={(event) => setTaskText(event.target.value)}/>
             <Button className="task-input__btn" onClick={addTask}>Ingresar Tarea</Button>

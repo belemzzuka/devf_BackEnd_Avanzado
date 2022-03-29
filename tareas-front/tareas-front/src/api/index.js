@@ -1,29 +1,40 @@
 import axios from 'axios';
 
-export const fetchTasks = (token) => {
-    return axios.get('http://localhost:5000/api/tareas', { 
-        headers: {
-            'Authorization': `Bearer ${process.env.REACT_APP_MONGO_DB_TOKEN}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
-}
-
-export const createTasks = (text) => {
-    return axios.post('http://localhost:5000/api/tareas',{ 
-        text: text
+export const loginRequest = (email, password) => {
+    return axios.post('http://localhost:5000/api/users/login', {
+        email: email,
+        password: password
     }, {
         headers: {
-            'Authorization': `Bearer ${process.env.REACT_APP_MONGO_DB_TOKEN}`,
             'Content-Type': 'application/json'
         }
     })
 }
 
-export const deleteTasks = (id) => {
+export const fetchTasks = (token) => {
+    return axios.get('http://localhost:5000/api/tareas', { 
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+}
+
+export const createTasks = (text, token) => {
+    return axios.post('http://localhost:5000/api/tareas',{ 
+        text: text
+    }, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
+export const deleteTasks = (id, token) => {
     return axios.delete(`http://localhost:5000/api/tareas/${id}`,{
         headers: {
-            'Authorization': `Bearer ${process.env.REACT_APP_MONGO_DB_TOKEN}`,
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
