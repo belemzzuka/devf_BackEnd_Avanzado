@@ -20,9 +20,7 @@ useEffect(() => {
 
 useEffect(() => {
     setLoader(true); //inicia como true para que veas que algo está cargando
-    const timeoutId = setTimeout(() => {
-      console.log("Este proceso pasa despues de 5 segundos")
-      fetchTasks(token) // TODO: Mandar token
+    fetchTasks(token) // TODO: Mandar token
       .then((res) => {
         setTasks(res.data)
         setLoader(false) //lo apagas cuando ya desplegó el contenido
@@ -30,12 +28,6 @@ useEffect(() => {
       .catch((err) => {
         console.log(err)
       })
-    }, 5000)
-
-    return () => {
-      clearTimeout(timeoutId) //este return se ejecuta hasta que 
-    }
-
 }, [])
 
 // ## OPCIONES PARA AGREGAR TAREA (POST)

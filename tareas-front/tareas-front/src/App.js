@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<TaskList userName={userName} token={token} />} />
           <Route path="auth" element={<AuthView />} >
             <Route index element={<Login handleToken={setToken} handleUserName={setUserName}/>} />
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<Login handleToken={setToken} handleUserName={setUserName} />} />
             <Route path="signup" element={<SignUp />} />
           </Route>
         </Routes>

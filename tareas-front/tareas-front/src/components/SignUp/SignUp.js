@@ -14,7 +14,7 @@ function SignUp(){
     const makeSignUp = () => {
         signUpRequest({ name, email, password })
         .then((res) => {
-            const user = res.data;
+            //const user = res.data;
             navigate("/auth/login");
         })
         .catch((err) => {
