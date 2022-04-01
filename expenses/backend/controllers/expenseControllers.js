@@ -12,11 +12,12 @@ const getExpenses = asyncHandler (async(req, res) => {
 
 // ### POST REQUEST ###
 const postExpenses = asyncHandler (async(req, res) => {
-    if(!req.body.description && !req.body.amount){
+    if(!req.body.description && !req.body.amount && !req.body.type){
         res.status(400)
         throw new Error('It is mandatory to add an expense')
     }
     const expense = await Expense.create({
+        type: req.body.type,
         description: req.body.description,
         amount: req.body.amount,
         user: req.user.id

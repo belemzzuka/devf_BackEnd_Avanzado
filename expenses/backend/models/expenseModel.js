@@ -8,6 +8,10 @@ const expenseSchema = mongoose.Schema({
         required: true,
         ref: 'users' //referencia a el esquema que se está exportando
     },
+    type: {
+        type: String,
+        required: [true, 'It is mandatory to add an expense type']
+    },
     description: {
         type: String,
         required: [true, 'It is mandatory to add a description']
