@@ -1,19 +1,9 @@
-.App {
+/* App style */
+.app {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+.app-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -21,18 +11,92 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: #EAEA7F;
+}
+
+:root {
+  --brand: #F24A72;
+  --expense-input__radio-color: #00b894;
+  accent-color: var(--brand);
+}
+
+/* Input Box Style */
+fieldset {
+  border: 1px solid var(--brand);
+}
+
+legend {
+  font-size: 1rem;
+  font-weight: 400;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+fieldset > * + * {
+  margin-top: 0.5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Input style */
+.expense-input {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.expense-input__container {
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.expense-input__label{
+  font-size: 1rem;
+  display: flex; 
+  align-items: left;
+  justify-content: left;
+  margin-bottom: 5px;
+}
+
+/* Radio buttons style */
+.expense-input__radio-container{
+  width: 50%;
+  margin-left: 6.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.expense-input__radio {
+  font-size: 1rem;
+}
+
+input[type="radio"] {
+  margin-left: 0.5rem;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--expense-input__radio-color);
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+/* Button style */
+.expense-input__btn {
+  background-image: linear-gradient(35deg, rgb(211, 103, 193) 10%, rgb(222, 223, 64) 25%, rgb(98, 203, 92) 50%, rgb(0, 187, 203) 75%, rgb(171, 121, 214) 90%);
+  /*background-color: #333C83 !important;*/
+}
+
+.expense-input__btn:hover {
+  background-color: #EAEA7F !important;
+}
+
+.expense-input__btn:active {
+  background-color: #00b894 !important;
 }
